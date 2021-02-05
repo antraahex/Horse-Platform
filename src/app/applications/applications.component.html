@@ -1,0 +1,45 @@
+<div class="main">
+
+    <div class="status">
+        <p-dropdown [options]="status" [(ngModel)]="applicationStatus"></p-dropdown>
+    
+    </div>
+    
+    <div class="filters">
+        <button pButton pRipple type="button" label="In Progress" class="p-button-raised p-button-text p-button-plain"></button>
+        <button pButton pRipple type="button" label="Declined" class="p-button-raised p-button-text p-button-plain"></button>
+        <button pButton pRipple type="button" label="Hold" class="p-button-raised p-button-text p-button-plain"></button>
+    </div>
+    
+    
+    <div class="list">
+        <p-table [value]="applicationsData">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Partner Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>   
+                    <th>Contact Person</th>          
+                    <th>Applied On</th>          
+                    <th>Activity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-application>
+                <tr>
+                    <td>{{application.partnerName}}</td>
+                    <td>{{application.email}}</td>
+                    <td>{{application.phone}}</td>
+                    <td>{{application.contactPerson}}</td>          
+                    <td>{{application.appliedOn | date: 'MM/dd/yyyy'}}</td>          
+                    <td>
+
+                        <button type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
+                        <p-menu #menu [popup]="true" [model]="items" ></p-menu>   
+                    </td>
+                </tr>
+            </ng-template>
+          </p-table>
+        
+    </div>
+    
+</div>
