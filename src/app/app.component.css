@@ -1,0 +1,35 @@
+.contain{
+    font-size: 17px;
+    font-weight: normal;
+    font-family: sans-serif;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+.contain > form >div, .contain>button{
+    margin:10px;
+
+}
+
+form{
+    background-color: whitesmoke;
+}
+
+p{
+    font-size:30px;
+    
+}
+
+.custom-control-label::before {
+
+    left: -1.09rem!important;
+
+}
+
+button:hover{
+   transform: scale(1.01);
+}
