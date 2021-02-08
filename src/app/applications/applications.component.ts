@@ -1,27 +1,32 @@
 import { ApplicationsService, application } from './../applications.service';
 import { Component, OnInit } from '@angular/core';
 
-
 export interface MenuItem{
   label,
   icon,
   command
 }
+
+interface Status {
+  name: string
+}
+
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.css']
 })
 
-
 export class ApplicationsComponent implements OnInit {
- status: string[];
-  applicationStatus:string;
+  status: Status[];
+  applicationStatus:Status;
   applicationsData: application[];
   items: MenuItem[];
+
   constructor(private appService: ApplicationsService) { 
     this.status=[      
-      "active","deactive"
+      {name:"Active"},
+      {name:"Inactive"}
   ];
   }
 
@@ -43,6 +48,7 @@ export class ApplicationsComponent implements OnInit {
 
   update(){
     console.log("update");
+
   }
   save(){
     console.log("save");

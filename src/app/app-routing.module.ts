@@ -8,7 +8,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 const routes: Routes = [
   { path: 'applications', component: ApplicationsComponent },
   { path: 'productForm', component: ProductFormComponent },
-  { path: '', redirectTo: '/applications', pathMatch: 'full' }
+  { path: '', redirectTo: '/productForm', pathMatch: 'full' }
 ];
 
 @NgModule({

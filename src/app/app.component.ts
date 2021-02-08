@@ -1,7 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { FormGroup, FormControl, Validators, ValidatorFn, FormBuilder } 
-    from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

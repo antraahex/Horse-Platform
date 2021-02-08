@@ -17,7 +17,7 @@ export class ApplicationsService {
   constructor(private http:HttpClient) { }
 
    getApplications(){
-     return this.http.get<any>('assets/data.json')
+     return this.http.get<any>('assets/MockJson/data.json')
      .toPromise()
      .then(res => <application[]>res.data)
      .then(data => { return data; });
