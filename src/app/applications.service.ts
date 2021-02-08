@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface application {
-  partnerName;
-  email;
-  phone;
-  contactPerson;
-  appliedOn;
+  partnerName:string;
+  email:string;
+  phone:string;
+  contactPerson:string;
+  appliedOn:string;
+  status:string;
+  processStatus:string;
 }
 
 @Injectable({

@@ -8,7 +8,13 @@ export interface MenuItem{
 }
 
 interface Status {
-  name: string
+  label: string,
+  value: string
+}
+
+interface processStatus {
+  label: string,
+  value: string
 }
 
 @Component({
@@ -18,22 +24,35 @@ interface Status {
 })
 
 export class ApplicationsComponent implements OnInit {
-  status: Status[];
+  statusList: Status[];
   applicationStatus:Status;
   applicationsData: application[];
   items: MenuItem[];
-
+  processStatusList: processStatus[];
+  
   constructor(private appService: ApplicationsService) { 
-    this.status=[      
-      {name:"Active"},
-      {name:"Inactive"}
+    this.statusList=[      
+      { label: "active", value: "active" },
+      { label: "inactive", value: "inactive" }
   ];
+    
+  this.processStatusList= [
+    { label: "inprogress", value: "inprogress"},
+    { label: "hold", value: "hold"},
+    { label: "declined", value: "declined"}
+
+  ]
   }
 
   ngOnInit() {
     this.appService.getApplications().
-    then( applicationsData=> this.applicationsData = applicationsData);
+    then( applicationsData=> {
+      this.applicationsData = applicationsData;
+      console.log(this.applicationsData);
 
+    }
+      );
+    
     this.items = [
       {label: 'Move to inactive',icon:'pi pi-external-link', command: () => {
           this.update();
@@ -46,15 +65,47 @@ export class ApplicationsComponent implements OnInit {
   ];
   }
 
-  update(){
+  // public inprogressListUpdate(){
+  //   this.appService.getApplications().
+  //   then( applicationsData=> {
+  //     // this.applicationsData = applicationsData;
+  //     // console.log(this.applicationsData);
+  //     this.applicationsData =  applicationsData.filter( application=>{
+  //       return application.inprogress ;
+  //     })
+
+  //   }
+  //     );
+  // }
+
+  public listUpdate(status){
+    console.log(status);
+    this.appService.getApplications().
+    then( applicationsData=> {
+      // this.applicationsData = applicationsData;
+      // console.log(this.applicationsData);
+      this.applicationsData =  applicationsData.filter( application=>{
+        return application.processStatus === status  ;
+      })
+
+    }
+      );
+  
+  }
+
+  public update(){
     console.log("update");
 
   }
-  save(){
+
+  public save(){
     console.log("save");
   }
-  delete(){
+
+  public delete(){
     console.log("delete");
   }
+
+
 }
 

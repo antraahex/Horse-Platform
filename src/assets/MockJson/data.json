@@ -1,20 +1,20 @@
 {
     "data": [
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"},
-        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active"}
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"declined"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"hold"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"hold"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"declined"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"inactive","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"},
+        {"partnerName": "Bayside Church", "email": "bayside@mail.com", "phone": "(541)754-3010", "contactPerson":"Thomas Paul", "appliedOn":"08/20/2020","status":"active","processStatus":"inprogress"}
 
     ]
     

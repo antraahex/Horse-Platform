@@ -14,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { MenuModule} from 'primeng/menu';
+import { MenuModule } from 'primeng/menu';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MenuModule} from 'primeng/menu';
     ButtonModule,
     SplitButtonModule,
     MenuModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

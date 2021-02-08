@@ -1,26 +1,31 @@
 <div class="main">
 
-    <div class="status">
-        <p-dropdown [options]="status" [(ngModel)]="applicationStatus" optionLabel="name" placeholder="Select status">
-        </p-dropdown>
-
-    </div>
-    <div class="status-value" *ngIf="applicationStatus">
-        <div>{{applicationStatus.name}}</div>
-    </div>
-
-    <div class="filters">
-        <button pButton pRipple type="button" label="In Progress"
-            class="p-button-raised p-button-text p-button-plain"></button>
-        <button pButton pRipple type="button" label="Declined"
-            class="p-button-raised p-button-text p-button-plain"></button>
-        <button pButton pRipple type="button" label="Hold"
-            class="p-button-raised p-button-text p-button-plain"></button>
-    </div>
 
     <div class="list">
-        <p-table [value]="applicationsData">
+        <p-table #dt [value]="applicationsData" >
+
             <ng-template pTemplate="header">
+                <tr>
+                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="statusList" (onChange)="filter($event.value)"
+                                placeholder="Select the status" [showClear]="true">
+                                <ng-template let-option pTemplate="item">
+                                    <span>{{option.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </tr>
+                <div class="filters">
+                    
+                    <button class="btn btn-secondary" label="In Progress" value= "inprogress"
+                        (click)="listUpdate($event.target.value)">In Progress</button>
+                    <button class="btn btn-secondary" type="button" value= "hold"
+                        (click)="listUpdate($event.target.value)">Hold</button>
+                    <button class="btn btn-secondary" type="button" value= "declined"
+                        (click)="listUpdate($event.target.value)">Declined</button>
+                </div >
                 <tr>
                     <th>Partner Name</th>
                     <th>Email</th>
