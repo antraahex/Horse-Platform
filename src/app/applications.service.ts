@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface application {
+  id:number;
   partnerName:string;
   email:string;
   phone:string;
