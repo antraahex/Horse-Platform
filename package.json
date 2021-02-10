@@ -24,6 +24,7 @@
     "@ckeditor/ckeditor5-build-classic": "^25.0.0",
     "@ckeditor/ckeditor5-image": "^25.0.0",
     "@ckeditor/ckeditor5-upload": "^25.0.0",
+    "angularx-social-login": "^3.5.4",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",

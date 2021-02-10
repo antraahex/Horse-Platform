@@ -46,7 +46,7 @@ export class ApplicationsComponent implements OnInit {
     ]
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.appService.getApplications().
       then(applicationsData => {
         this.applicationsData = applicationsData;
@@ -80,53 +80,52 @@ export class ApplicationsComponent implements OnInit {
     ];
   }
 
-//update the list on button clicks(inprogress,hold,declined)
+  //update the list on button clicks(inprogress,hold,declined)
   public listUpdate(status): void {
     this.appService.getApplications().
-    then(applicationsData => {
-      this.applicationsData = applicationsData;
-      this.applicationsData = this.applicationsData.filter(application => {
-        return application.processStatus === status;
-  
-      })
-    }
-    );
+      then(applicationsData => {
+        this.applicationsData = applicationsData;
+        this.applicationsData = this.applicationsData.filter(application => {
+          return application.processStatus === status;
 
-  }
-
-//fn to move active to inactive and vice-versa
-  public move(id): void {
-    console.log("id is"+id);
-    for(let x of this.applicationsData){
-      if(id == x.id){
-        let presentIndex= this.applicationsData.indexOf(x);
-        this.applicationsData[presentIndex].status = (this.applicationsData[presentIndex].status =='active'?'inactive':'active');
+        })
       }
-  }
+      );
   }
 
-//to delete the application
-  public delete(id): void {
-    for(let x of this.applicationsData){
-        if(id == x.id){
-          this.applicationsData.splice(this.applicationsData.indexOf(x), 1);
-        }
+  //fn to move active to inactive and vice-versa
+  public move(id): void {
+    console.log("id is" + id);
+    for (let x of this.applicationsData) {
+      if (id == x.id) {
+        let presentIndex = this.applicationsData.indexOf(x);
+        this.applicationsData[presentIndex].status = (this.applicationsData[presentIndex].status == 'active' ? 'inactive' : 'active');
+      }
     }
   }
 
-//to get the id of the application that is clicked on activity menu button
+  //to delete the application
+  public delete(id): void {
+    for (let x of this.applicationsData) {
+      if (id == x.id) {
+        this.applicationsData.splice(this.applicationsData.indexOf(x), 1);
+      }
+    }
+  }
+
+  //to get the id of the application that is clicked on activity menu button
   public getCall(id): void {
     this.rowId = id;
   }
 
- //clear filters
-  public clearFilters(): void{
+  //clear filters
+  public clearFilters(): void {
     this.appService.getApplications().
-    then(applicationsData => {
-      this.applicationsData = applicationsData;
+      then(applicationsData => {
+        this.applicationsData = applicationsData;
 
-    }
-    );
-  } 
+      }
+      );
+  }
 }
 
