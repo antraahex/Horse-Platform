@@ -12,8 +12,8 @@ export class SocialLoginComponent implements OnInit {
 
   user: SocialUser;
   loggedIn: boolean;
-  constructor(private authService: SocialAuthService) { 
-  
+  constructor(private authService: SocialAuthService) {
+
 
   }
 

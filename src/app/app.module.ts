@@ -66,15 +66,6 @@ import { GoogleLoginProvider, FacebookLoginProvider, AmazonLoginProvider, VKLogi
             id: VKLoginProvider.PROVIDER_ID,
             provider: new VKLoginProvider('427239425188952')
           },
-  //           {
-  //   id: LinkedInLoginProvider.PROVIDER_ID,
-  //   provider: new LinkedInLoginProvider("86lwawk9v65o24")
-  // }
-            // {
-  //   id: FacebookLoginProvider.PROVIDER_ID,
-  //   provider: new FacebookLoginProvider('561602290896109')
-  // },
-
         ]
       } as SocialAuthServiceConfig,
     }
