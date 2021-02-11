@@ -18,7 +18,7 @@ import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SocialLoginComponent } from './social-login/social-login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider, AmazonLoginProvider, VKLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -57,15 +57,24 @@ import { GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('427239425188952')
-          }
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider('amzn1.devportal.webapp.5586a112ef1142caa463d781ce31bb67')
+          },
+          {
+            id: VKLoginProvider.PROVIDER_ID,
+            provider: new VKLoginProvider('427239425188952')
+          },
+  //           {
+  //   id: LinkedInLoginProvider.PROVIDER_ID,
+  //   provider: new LinkedInLoginProvider("86lwawk9v65o24")
+  // }
             // {
   //   id: FacebookLoginProvider.PROVIDER_ID,
   //   provider: new FacebookLoginProvider('561602290896109')
   // },
-  // {
-  //   id: LinkedInLoginProvider.PROVIDER_ID,
-  //   provider: new LinkedInLoginProvider("78iqy5cu2e1fgr")
-  // }
+
         ]
       } as SocialAuthServiceConfig,
     }

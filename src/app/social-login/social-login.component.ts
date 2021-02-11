@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider, AmazonLoginProvider, VKLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 
 @Component({
@@ -23,6 +23,14 @@ export class SocialLoginComponent implements OnInit {
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithAmazon(): void {
+    this.authService.signIn(AmazonLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithVK(): void {
+    this.authService.signIn(VKLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {
