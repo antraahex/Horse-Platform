@@ -33,7 +33,6 @@
             
             ],
             "scripts": [
-              "./ckfinder/ckfinder.js"
             ]
           },
           "configurations": {

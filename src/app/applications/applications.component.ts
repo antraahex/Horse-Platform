@@ -1,21 +1,7 @@
 import { ApplicationsService, application } from './../applications.service';
 import { Component, OnInit } from '@angular/core';
-
-export interface MenuItem {
-  label: string,
-  icon: string,
-  command
-}
-
-interface Status {
-  label: string,
-  value: string
-}
-
-interface processStatus {
-  label: string,
-  value: string
-}
+import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-applications',
@@ -24,93 +10,79 @@ interface processStatus {
 })
 
 export class ApplicationsComponent implements OnInit {
-  statusList: Status[];
-  applicationStatus: Status;
   applicationsData: application[];
-  itemsForActive: MenuItem[];
-  itemsForInactive: MenuItem[];
-  processStatusList: processStatus[];
   rowId: number;
+  display: boolean = false;
+  newForm: boolean = false;
+  isFemale: boolean = false;
+  isPregnant: boolean = false;
+  showEditForm: boolean = false;
+  isMonitoring: boolean = false;
 
-  constructor(private appService: ApplicationsService) {
-    this.statusList = [
-      { label: "active", value: "active" },
-      { label: "inactive", value: "inactive" }
-    ];
+  options = [
+    { name: "Male", abbr: 'M' },
+    { name: 'Female', abbr: 'F' }
+  ];
 
-    this.processStatusList = [
-      { label: "inprogress", value: "inprogress" },
-      { label: "hold", value: "hold" },
-      { label: "declined", value: "declined" }
-
-    ]
+  horseForm = new FormGroup({
+    name: new FormControl(''),
+    date_of_birth: new FormControl(''),
+    gender: new FormControl(this.options[3]),
+    pregnant: new FormControl(null),
+    due_date: new FormControl(null),
+ 
+  });
+  constructor(private appService: ApplicationsService, private route: Router) {
   }
 
   ngOnInit(): void {
-    this.appService.getApplications().
-      then(applicationsData => {
-        this.applicationsData = applicationsData;
-      }
-      );
-
-    this.itemsForActive = [
-      {
-        label: 'Move to inactive', icon: 'pi pi-external-link', command: () => {
-          this.move(this.rowId);
-        }
-      },
-      {
-        label: 'Delete', icon: 'pi pi-times', command: () => {
-          this.delete(this.rowId);
-        }
-      }
-    ];
-
-    this.itemsForInactive = [
-      {
-        label: 'Move to active', icon: 'pi pi-external-link', command: (event) => {
-          this.move(this.rowId);
-        }
-      },
-      {
-        label: 'Delete', icon: 'pi pi-times', command: () => {
-          this.delete(this.rowId);
-        }
-      }
-    ];
+    this.isPregnant = false;
+    this.isFemale = false;
+    this.getData();
+    setInterval(() => { this.getData() }, 5000);
   }
-
-  //update the list on button clicks(inprogress,hold,declined)
-  public listUpdate(status): void {
+  public getData() {
     this.appService.getApplications().
-      then(applicationsData => {
-        this.applicationsData = applicationsData;
-        this.applicationsData = this.applicationsData.filter(application => {
-          return application.processStatus === status;
-
-        })
+      subscribe(applicationsData => {
+        this.applicationsData = applicationsData.data;
       }
       );
   }
-
-  //fn to move active to inactive and vice-versa
-  public move(id): void {
-    console.log("id is" + id);
-    for (let x of this.applicationsData) {
-      if (id == x.id) {
-        let presentIndex = this.applicationsData.indexOf(x);
-        this.applicationsData[presentIndex].status = (this.applicationsData[presentIndex].status == 'active' ? 'inactive' : 'active');
-      }
-    }
+  //popup for delete
+  public deletePopup(): void {
+    this.display = true;
   }
 
   //to delete the application
   public delete(id): void {
-    for (let x of this.applicationsData) {
-      if (id == x.id) {
-        this.applicationsData.splice(this.applicationsData.indexOf(x), 1);
-      }
-    }
+    this.display = false;
+    this.appService.deleteHorse(id)
+      .subscribe(res => {
+        this.getData();
+      })
+  }
+
+  //cancel button in delete popup
+  public cancel() {
+    this.display = false;
+  }
+
+  //editPopup
+  public edit() {
+    this.showEditForm = true;
+  }
+
+  //update form
+  public updateForm(details, id): void {
+    console.log(details);
+    this.isPregnant = false;
+    this.isFemale = false;
+    this.showEditForm = false;
+    this.horseForm.reset();
+    this.appService.updateHorse(details, id)
+      .subscribe(res => {
+        this.getData();
+      })
   }
 
   //to get the id of the application that is clicked on activity menu button
@@ -118,14 +90,63 @@ export class ApplicationsComponent implements OnInit {
     this.rowId = id;
   }
 
-  //clear filters
-  public clearFilters(): void {
-    this.appService.getApplications().
-      then(applicationsData => {
-        this.applicationsData = applicationsData;
+  //start monitoring
+  public startMonitoring(id): void {
+    let data = { is_monitoring: true }
+    this.appService.monitorHorse(id, data)
+      .subscribe(res => {
+        this.getData();
 
-      }
-      );
+      })
   }
+
+  //stop monitoring
+  public stopMonitoring(id): void {
+    let data = { is_monitoring: false }
+    this.appService.monitorHorse(id, data)
+      .subscribe(res => {
+        this.getData();
+      })
+
+  }
+
+  //create new horse button
+  public createNewHorse(): void {
+    this.newForm = true;
+  }
+
+  //submit of new horse
+  public addNewHorse(details): void {
+    this.isPregnant = false;
+    this.isFemale = false;
+    this.newForm = false;
+    this.horseForm.reset();
+    this.appService.addNewHorse(details)
+      .subscribe(res => {
+        this.getData();
+      })
+  }
+
+  // toggling the gender 
+  public updateGender(val): void {
+
+    if (val[0] == 0) {
+      this.isFemale = false;
+
+    } else {
+      this.isFemale = true;
+
+    }
+
+  }
+
+  //update pregnant or not checkbox
+  public updatePregnancy(): void {
+    this.isPregnant = this.isPregnant ? false : true;
+  }
+
+
 }
+
+
 

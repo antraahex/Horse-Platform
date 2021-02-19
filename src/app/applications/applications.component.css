@@ -22,3 +22,40 @@
 .statusFilter{
     margin-bottom:10px;
 }
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.create{
+    display: flex;
+    justify-content:flex-end;
+    margin-bottom: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+button{
+    justify-content:center;
+}
+
+.container{
+    display: flex;
+    background-color: rgb(245 240 240);
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.checkbox{
+    margin-left: 22px;
+}
+
+
+.p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+margin-right:10px;
+}

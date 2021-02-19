@@ -1,5 +1,8 @@
 <div class="main">
-    <div class="filters">
+    <div>
+        <h3 class="title">Horse Management Platform</h3>
+    </div>
+    <!-- <div class="filters">
         <button class="btn btn-primary" type="button" value="inprogress"
             (click)="listUpdate($event.target.value)">In Progress</button>
         <button class="btn btn-primary" type="button" value="hold"
@@ -8,10 +11,15 @@
             (click)="listUpdate($event.target.value)">Declined</button>
         <button class="btn btn-primary" type="button" value="clear"
             (click)="clearFilters()">Clear Filter</button>
+    </div> -->
+
+    <div class="create">
+        <button pButton pRipple type="button" (click)="createNewHorse()" label="Create New Horse"
+            class="p-button-rounded p-button-secondary"></button>
     </div>
-        <p-table [value]="applicationsData">
-            <ng-template pTemplate="header">
-                <div class="statusFilter">
+    <p-table [value]="applicationsData">
+        <ng-template pTemplate="header">
+            <!-- <div class="statusFilter">
                     <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-dropdown [ngModel]="value" [options]="statusList" (onChange)="filter($event.value)"
@@ -22,34 +30,130 @@
                             </p-dropdown>
                         </ng-template>
                     </p-columnFilter>
+                </div> -->
+
+            <tr>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Heart Rate</th>
+                <th>Monitoring</th>
+                <th>Activity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-application>
+            <tr>
+                <td>{{application.name}}</td>
+                <td>{{application.date_of_birth | date}}</td>
+                <td>{{application.gender}}</td>
+                <td>{{application.heart_rate}}</td>
+                <td>
+                    <button *ngIf="!application.is_monitoring" pButton pRipple type="button"
+                        (click)="startMonitoring(application.id);getCall(application.id)" label="Start Monitoring"
+                        class="p-button-rounded p-button-secondary"></button>
+                    <button *ngIf="application.is_monitoring" pButton pRipple type="button"
+                        (click)="stopMonitoring(application.id);getCall(application.id)" label="Stop Monitoring"
+                        class="p-button-rounded p-button-secondary"></button>
+                </td>
+                <td>
+                    <button class="p-button-rounded p-button-secondary p-button-text" type="button" name="edit" pButton
+                        icon="pi pi-pencil" (click)="edit();getCall(application.id)"></button>
+                    <button class="p-button-rounded p-button-secondary p-button-text" type="button" name="delete"
+                        pButton icon="pi pi-times-circle" (click)="deletePopup();getCall(application.id)"></button>
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <!-- delete popup -->
+    <p-dialog class="deleteBtns" header="Are you sure you want to delete ?" [(visible)]="display"
+        [style]="{width: '50vw'}">
+        <button class="deleteBtns" pButton pRipple type="button" (click)="delete(rowId)" label="Yes"
+            class="p-button-raised p-button-secondary"></button>
+        <button class="deleteBtns" pButton pRipple type="button" (click)="cancel()" label="No"
+            class="p-button-raised p-button-secondary"></button>
+    </p-dialog>
+    <!-- newform -->
+    <p-dialog header="Fill Details" [(visible)]="newForm" [style]="{width: '50vw'}">
+        <div class="container">
+            <form [formGroup]="horseForm">
+
+                <label>
+                    Name
+                    <input type="text" formControlName="name" required>
+                </label>
+
+                <label>
+                    Date of Birth
+                    <input type="date" formControlName="date_of_birth" required>
+                </label>
+
+                <label>Gender</label>
+                <select formControlName="gender" #sex (change)="updateGender($event.target.value)" required>
+                    <option *ngFor="let sex of options" [ngValue]="sex.abbr">
+                        {{ sex.name }}
+                    </option>
+                </select>
+                <div *ngIf="isFemale">
+                    <p>Is Pregnant?</p>
+                    <input type="checkbox" class="custom-control-input" formControlName="pregnant" id="pregnant"
+                        (change)="updatePregnancy()">
+                    <label class="custom-control-label checkbox" for="pregnant">Yes or No</label>
+                </div>
+                <label *ngIf="isFemale && isPregnant">
+                    Due Date
+                    <input type="date" formControlName="due_date">
+                </label>
+                <div class="btn ">
+                    <button (click)="addNewHorse(horseForm.value)" class="btn-primary" type="submit"
+                        [disabled]="!horseForm.valid">Submit</button>
+                    <!-- <button  routerLink="/applications" class="btn-primary" >Go to Homepage</button> -->
+
                 </div>
 
-                <tr>
-                    <th>Partner Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Contact Person</th>
-                    <th>Applied On</th>
-                    <th>Activity</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-application>
-                <tr>
-                    <td>{{application.partnerName}}</td>
-                    <td>{{application.email}}</td>
-                    <td>{{application.phone}}</td>
-                    <td>{{application.contactPerson}}</td>
-                    <td>{{application.appliedOn | date: 'MM/dd/yyyy'}}</td>
-                    <td>
-                        <button *ngIf="application.status=='active'" type="button" name="active" pButton icon="pi pi-bars"
-                            (click)="menuForActive.toggle($event);getCall(application.id)"></button>
-                        <p-menu #menuForActive [popup]="true" [model]="itemsForActive" appendTo="body"></p-menu>
-                        <button *ngIf="application.status=='inactive'" type="button" name="inactive" pButton icon="pi pi-bars"
-                            (click)="menuForInactive.toggle($event);getCall(application.id)"></button>
-                        <p-menu #menuForInactive [popup]="true" [model]="itemsForInactive" appendTo="body"></p-menu>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
+            </form>
+        </div>
+    </p-dialog>
+    <p-dialog header="Fill Details" [(visible)]="showEditForm" [style]="{width: '50vw'}">
+        <div class="container">
+            <form [formGroup]="horseForm">
 
+                <label>
+                    Name
+                    <input type="text" formControlName="name" required>
+                </label>
+
+                <label>
+                    Date of Birth
+                    <input type="date" formControlName="date_of_birth" required>
+                </label>
+
+                <label>Gender</label>
+                <select formControlName="gender" #sex (change)="updateGender($event.target.value)" required>
+                    <option *ngFor="let sex of options" [ngValue]="sex.abbr">
+                        {{ sex.name }}
+                    </option>
+                </select>
+                <div *ngIf="isFemale">
+                    <p>Is Pregnant?</p>
+                    <input type="checkbox" class="custom-control-input" formControlName="pregnant" id="pregnant"
+                        (change)="updatePregnancy()">
+                    <label class="custom-control-label checkbox" for="pregnant">Yes or No</label>
+                </div>
+                <label *ngIf="isFemale && isPregnant">
+                    Due Date
+                    <input type="date" formControlName="due_date">
+                </label>
+
+
+                <div class="btn ">
+                    <button (click)="updateForm(horseForm.value,rowId)" class="btn-primary" type="submit"
+                        [disabled]="!horseForm.valid">Submit</button>
+
+                </div>
+
+            </form>
+        </div>
+    </p-dialog>
+
+</div>
