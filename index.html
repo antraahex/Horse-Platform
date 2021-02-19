@@ -1,0 +1,18 @@
+<html>
+<head>
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+<script>
+    window.onload = function() {
+       CKEDITOR.replace('myeditor');
+    };
+
+    function displayData(){
+        console.log(document.getElementById("myeditor").value);
+    }
+</script>
+</head>
+<body>
+    <textarea name="myeditor" id="myeditor">Welcome here</textarea>
+    <button onclick="displayData()">Submit</button>
+</body>
+</html>
