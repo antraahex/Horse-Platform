@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { DialogModule } from 'primeng/dialog';
     DialogModule
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 export interface application {
@@ -19,31 +18,31 @@ export interface application {
 })
 export class ApplicationsService {
 
-  constructor(private http: HttpClient, private route: Router) { }
+  constructor(private http: HttpClient) { }
 
   getApplications(): Observable<any> {
-    return this.http.get<any>('http://73492cd29205.ngrok.io/horses')
+    return this.http.get<any>('http://e4eacd6637fb.ngrok.io/horses')
 
   }
 
   addNewHorse(details): Observable<any> {
-    return this.http.post<any>('http://73492cd29205.ngrok.io/horses', details)
+    return this.http.post<any>('http://e4eacd6637fb.ngrok.io/horses', details)
 
   }
 
   updateHorse(details, id): Observable<any> {
-    return this.http.put<any>('http://73492cd29205.ngrok.io/horses/' + id, details)
+    return this.http.put<any>('http://e4eacd6637fb.ngrok.io/horses/' + id, details)
+  }
+
+  getHorse(id): Observable<any> {
+    return this.http.get<any>('http://e4eacd6637fb.ngrok.io/horses/' + id);
   }
 
   deleteHorse(id): Observable<any> {
-    return this.http.delete<any>('http://73492cd29205.ngrok.io/horses/' + id);
+    return this.http.delete<any>('http://e4eacd6637fb.ngrok.io/horses/' + id);
   }
 
   monitorHorse(id, data): Observable<any> {
-    return this.http.put<any>('http://73492cd29205.ngrok.io/horses/monitor/' + id, data)
+    return this.http.put<any>('http://e4eacd6637fb.ngrok.io/horses/monitor/' + id, data)
   }
-
-
-
-
 }

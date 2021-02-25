@@ -45,7 +45,7 @@ button{
 
 .container{
     display: flex;
-    background-color: rgb(245 240 240);
+    background-color: #dbddde75;
     justify-content: center;
     padding: 10px;
 
@@ -55,7 +55,29 @@ button{
     margin-left: 22px;
 }
 
-
 .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
 margin-right:10px;
+}
+
+.fa-spin {
+    border: none; 
+    color:#607D8B; 
+    font-size: 16px;
+    padding: 2px 2px;
+  }
+  
+  .fa-exclamation-circle{
+    border: none; 
+    color:#e60a0a; 
+    font-size: 16px;
+    padding: 2px 2px;
+  }
+.submitBtn{
+  border-radius: 5px;
+  color: #ffffff;
+  background: #607D8B;
+  border: 1px solid #607D8B;
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+
 }
